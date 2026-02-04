@@ -1676,7 +1676,7 @@ CLAIM MY FREE CLASS NOW >>
                                                 </div>
                                                 <div class="grid md:grid-cols-2 gap-12 items-center">
                                                     <div class="rounded-2xl overflow-hidden shadow-xl">
-                                                        <img decoding="async" src="https://mindmentorz.com/wp-content/uploads/2025/11/Gemini_Generated_Image_bi5b9dbi5b9dbi5b-removebg-preview.webp" alt="Beginner chess class" class="w-full h-full object-cover"></div>
+                                                        <img decoding="async" src="./img/Gemini_Generated_Image_bi5b9dbi5b9dbi5b-removebg-preview.webp" alt="Beginner chess class" class="w-full h-full object-cover"></div>
                                                     <div
                                                         class="text-left program-details">
                                                         <span class="text-[#FF7A00] font-semibold mb-2 block">Ages 5-8</span>
@@ -1704,7 +1704,7 @@ Enroll Now
                                 <div class="container mx-auto max-w-6xl px-6">
                                     <div class="grid md:grid-cols-2 gap-12 items-center">
                                         <div class="rounded-2xl overflow-hidden shadow-xl">
-                                            <img decoding="async" src="https://mindmentorz.com/wp-content/uploads/2025/11/Gemini_Generated_Image_eh5ke7eh5ke7eh5k-removebg-preview.webp" alt="Intermediate chess class" class="w-full h-full object-cover"></div>
+                                            <img decoding="async" src="./img/Gemini_Generated_Image_eh5ke7eh5ke7eh5k-removebg-preview.webp" alt="Intermediate chess class" class="w-full h-full object-cover"></div>
                                         <div
                                             class="text-left program-details">
                                             <span class="text-[#FF7A00] font-semibold mb-2 block">Ages 9-12</span>
@@ -1732,7 +1732,7 @@ Enroll Now
                             <div class="container mx-auto max-w-6xl px-6">
                                 <div class="grid md:grid-cols-2 gap-12 items-center">
                                     <div class="rounded-2xl overflow-hidden shadow-xl">
-                                        <img decoding="async" src="https://mindmentorz.com/wp-content/uploads/2025/11/Gemini_Generated_Image_26xrdx26xrdx26xr-removebg-preview-1.webp" alt="Advanced chess class" class="w-full h-full object-cover"></div>
+                                        <img decoding="async" src="./img/Gemini_Generated_Image_26xrdx26xrdx26xr-removebg-preview-1.webp" alt="Advanced chess class" class="w-full h-full object-cover"></div>
                                     <div
                                         class="text-left program-details">
                                         <span class="text-[#FF7A00] font-semibold mb-2 block">Teens & Tournament Players</span>
@@ -1988,10 +1988,12 @@ Learn chess faster.Its a very good platform to enchance the skills.Teachers are 
                                 name="parentName"
                                 class="w-full pl-10 pr-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm sm:text-base"
                                 placeholder="Enter your full name"
+                                pattern="[A-Za-z\s]+"
+                                title="Name should only contain letters and spaces"
                                 required
                             />
                         </div>
-                        <span class="text-red-500 text-xs mt-1 hidden" id="parentNameError">Please enter your name</span>
+                        <span class="text-red-500 text-xs mt-1 hidden" id="parentNameError">Name should only contain letters and spaces</span>
                     </div>
 
                     <!-- WhatsApp Number -->
@@ -2032,10 +2034,12 @@ Learn chess faster.Its a very good platform to enchance the skills.Teachers are 
                                 name="kidAge"
                                 class="w-full pl-10 pr-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm sm:text-base"
                                 placeholder="Enter age"
+                                min="1"
+                                max="100"
                                 required
                             />
                         </div>
-                        <span class="text-red-500 text-xs mt-1 hidden" id="kidAgeError">Please enter age between 5-16 years</span>
+                        <span class="text-red-500 text-xs mt-1 hidden" id="kidAgeError">Please enter age between 1-100 years</span>
                     </div>
 
                     <!-- Class Preference -->
@@ -2256,8 +2260,9 @@ Learn chess faster.Its a very good platform to enchance the skills.Teachers are 
 
                     let isValid = true;
 
-                    // Validate Parent Name
-                    if (!parentName || parentName.length < 2) {
+                    // Validate Parent Name (only letters and spaces)
+                    const nameRegex = /^[A-Za-z\s]+$/;
+                    if (!parentName || parentName.length < 2 || !nameRegex.test(parentName)) {
                         document.getElementById('parentNameError').classList.remove('hidden');
                         isValid = false;
                     }
@@ -2266,6 +2271,12 @@ Learn chess faster.Its a very good platform to enchance the skills.Teachers are 
                     const phoneRegex = /^[0-9]{10}$/;
                     if (!phoneRegex.test(whatsappNumber)) {
                         document.getElementById('whatsappError').classList.remove('hidden');
+                        isValid = false;
+                    }
+
+                    // Validate Kid's Age (1-100)
+                    if (!kidAge || kidAge < 1 || kidAge > 100) {
+                        document.getElementById('kidAgeError').classList.remove('hidden');
                         isValid = false;
                     }
 
