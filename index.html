@@ -2432,10 +2432,10 @@ Learn chess faster.Its a very good platform to enchance the skills.Teachers are 
                                                         </span>
                                                         <input type="number" id="kidAge" name="kidAge"
                                                             class="w-full pl-10 pr-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm sm:text-base"
-                                                            placeholder="Enter age" min="1" max="100" required />
+                                                            placeholder="Enter age" min="4" max="15" required />
                                                     </div>
                                                     <span class="text-red-500 text-xs mt-1 hidden"
-                                                        id="kidAgeError">Please enter age between 1-100 years</span>
+                                                        id="kidAgeError">Please enter age between 1-15 years</span>
                                                 </div>
 
                                                 <!-- Class Preference -->
@@ -2524,6 +2524,15 @@ Learn chess faster.Its a very good platform to enchance the skills.Teachers are 
                                     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer
                                         data-deferred="1"></script>
                                     <script defer>
+                                        document.getElementById("kidAge").addEventListener("input", function () {
+    const age = parseInt(this.value, 10);
+    const ageError = document.getElementById("kidAgeError");
+
+    if (age >= 4 && age <= 15) {
+        ageError.classList.add("hidden");
+        this.classList.remove("border-red-500");
+    }
+});
                                         document.addEventListener('DOMContentLoaded', (event) => {
                                             // Remove loading state to show content
                                             document.body.classList.add('loaded');
