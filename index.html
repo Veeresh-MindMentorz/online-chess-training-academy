@@ -2421,22 +2421,31 @@ Learn chess faster.Its a very good platform to enchance the skills.Teachers are 
 
                                                 <!-- Kid's Age -->
                                                 <div>
-                                                    <label for="kidAge"
-                                                        class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
-                                                        Kid's Age <span class="text-red-500">*</span>
-                                                    </label>
-                                                    <div class="relative">
-                                                        <span
-                                                            class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
-                                                            <i class="fa-solid fa-child"></i>
-                                                        </span>
-                                                        <input type="number" id="kidAge" name="kidAge"
-                                                            class="w-full pl-10 pr-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm sm:text-base"
-                                                            placeholder="Enter age" min="4" max="15" required />
-                                                    </div>
-                                                    <span class="text-red-500 text-xs mt-1 hidden"
-                                                        id="kidAgeError">Please enter age between 1-15 years</span>
-                                                </div>
+    <label for="kidAge"
+        class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
+        Kid's Age <span class="text-red-500">*</span>
+    </label>
+
+    <div class="relative">
+        <span
+            class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
+            <i class="fa-solid fa-child"></i>
+        </span>
+
+        <select id="kidAge" name="kidAge"
+            class="w-full pl-10 pr-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm sm:text-base"
+            required>
+            <option value="">Select Age Group</option>
+            <option value="5-8">5–8 years</option>
+            <option value="9-12">9–12 years</option>
+            <option value="13-15">13–15 years</option>
+        </select>
+    </div>
+
+    <span class="text-red-500 text-xs mt-1 hidden"
+        id="kidAgeError">Please select an age group</span>
+</div>
+
 
                                                 <!-- Class Preference -->
                                                 <div>
@@ -2524,15 +2533,15 @@ Learn chess faster.Its a very good platform to enchance the skills.Teachers are 
                                     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer
                                         data-deferred="1"></script>
                                     <script defer>
-                                        document.getElementById("kidAge").addEventListener("input", function () {
-    const age = parseInt(this.value, 10);
+                                        document.getElementById("kidAge").addEventListener("change", function () {
     const ageError = document.getElementById("kidAgeError");
 
-    if (age >= 4 && age <= 15) {
+    if (this.value) {
         ageError.classList.add("hidden");
-        this.classList.remove("border-red-500");
+        this.classList.remove("border-red-500", "ring-2", "ring-red-300");
     }
 });
+
                                         document.addEventListener('DOMContentLoaded', (event) => {
                                             // Remove loading state to show content
                                             document.body.classList.add('loaded');
